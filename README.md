@@ -56,3 +56,23 @@ Currently, on **Properties**, the status is *Not Connected* and in **Overview**,
 <img src="/pictures/sts82.png" title="site to site"  width="1000">
 <img src="/pictures/sts83.png" title="site to site"  width="1000">
 <img src="/pictures/sts84.png" title="site to site"  width="1000">
+
+
+## Site to Site VPN Connection - Gateway transit
+
+- create a VM *newvm* inside a VN *new-network/default*. Make sure the IP is None. Select inbound port HTTP and RDP. North Europe location. Intall IIS 
+<img src="/pictures/gt.png" title="gateway transit"  width="1000">
+<img src="/pictures/gt1.png" title="gateway transit"  width="1000">
+
+- currently you cannot connect to *newvm* from *companyvm* using *newvm* private IP because there is no connectivity to *new-network/default*.
+
+Let's establish a *Virtual Network Peering* between *new-network* and *azure-network*.
+
+- on *new-network*, add a Peerings
+<img src="/pictures/gt2.png" title="site to site"  width="500">
+
+- on *companyvm*, add a static route for *new-network* IP address range
+<img src="/pictures/gt3.png" title="site to site"  width="1000">
+
+You can now connect from *companyvm* to *newvm*.
+<img src="/pictures/gt4.png" title="site to site"  width="1000">
